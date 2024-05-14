@@ -3,5 +3,5 @@ RUN mkdir /app
 WORKDIR /app/
 ADD . /app/
 RUN pip3 install -r requirements.txt
-CMD ["python", "/app/app.py"]
+CMD ["flask", "/app/app.py"]
 

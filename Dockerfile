@@ -4,5 +4,5 @@ WORKDIR /app/
 ADD . /app/
 RUN pip3 install -r requirements.txt
 ENV FLASK_APP=/app/app.py
-CMD ["flask", "run]
+CMD ["flask", "run"]
 

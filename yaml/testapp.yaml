@@ -5,7 +5,7 @@ metadata:
 spec:
   containers:
   - name: testapp
-    image: testapp:latest
+    image: nxpy/k8s-flask-app
     imagePullPolicy: Never
     resources:
       limits:

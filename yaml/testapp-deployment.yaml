@@ -14,7 +14,7 @@ spec:
         app: testapp
     spec:
       containers:
-      - image: nxpy/k8s-flask-app
+      - image: nxpy/k8s-flask-app:v2
         # add version to the image
         version: v1
         name: testapp

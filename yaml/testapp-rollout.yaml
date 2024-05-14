@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: testapp
-        image: nxpy/k8s-flask-app
+        image: nxpy/k8s-flask-app:v2
         ports:
         - containerPort: 80
   strategy:

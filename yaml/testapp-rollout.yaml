@@ -1,10 +1,9 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
 metadata:
-  name: testapp
+  name: testapp-rollout
 spec:
-  replicas: 1
-  revisionHistoryLimit: 3
+  replicas: 3
   selector:
     matchLabels:
       app: testapp
@@ -14,15 +13,10 @@ spec:
         app: testapp
     spec:
       containers:
-      - image: nxpy/k8s-flask-app
-        # add version to the image
-        version: v1
-        name: testapp
+      - name: testapp
+        image: nxpy/k8s-flask-app
         ports:
         - containerPort: 80
-  
-  minReadySeconds: 30
-  revisionHistoryLimit: 3
   strategy:
     canary: #Indicates that the rollout should use the Canary strategy
       maxSurge: "25%"

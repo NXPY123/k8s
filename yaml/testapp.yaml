@@ -1,13 +1,27 @@
 apiVersion: v1
-kind: Pod
+kind: Deployment
 metadata:
   name: testapp
 
 spec:
-  containers:
-  - name: testapp
-    image: nxpy/k8s-flask-app
-    imagePullPolicy: Never
-    resources:
-      limits:
-        memory: "200Mi"
+  replicas: 3
+  selector:
+    matchLabels:
+      app: testapp
+  template:
+    metadata:
+      labels:
+        app: testapp
+    spec:
+      containers:
+      - name: testapp
+        image: nxpy/k8s-flask-app
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 80
+        resources:
+         limits:
+          memory: "200Mi"
+
+
+

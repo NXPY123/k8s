@@ -21,15 +21,5 @@ spec:
         ports:
         - containerPort: 80
   
-  minReadySeconds: 30
-  revisionHistoryLimit: 3
-  strategy:
-    canary: #Indicates that the rollout should use the Canary strategy
-      maxSurge: "25%"
-      maxUnavailable: 0
-      steps:
-      - setWeight: 10
-      - pause:
-          duration: 10s
-      - setWeight: 20
-      - pause: {} # pause indefinitely
+  
+  

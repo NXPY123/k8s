@@ -25,5 +25,6 @@ spec:
       containers:
       - image: nxpy/k8s-flask-app:998e93ac84e049a759a58327e8f444552e354131
         name: testapp
+        platform: linux/amd64
         ports:
         - containerPort: 80

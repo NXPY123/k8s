@@ -18,7 +18,13 @@ spec:
       - pause:
           duration: 10s
       - setWeight: 20
-      - pause: {}
+      - pause: 
+          duration: 10s
+      - setWeight: 30
+      - pause:
+          duration: 10s
+      # Rollout to 100% after 30s
+      - setWeight: 100
       trafficRouting:
         nginx:
           stableIngress: testapp-ingress

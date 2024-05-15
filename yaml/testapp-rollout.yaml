@@ -9,6 +9,11 @@ spec:
       app: testapp
   strategy:
     canary:
+      canaryService: testapp-service-canary
+      stableService: testapp-service-stable
+      trafficRouting:
+        nginx:
+          stableIngress: testapp-ingress
       maxSurge: 25%
       maxUnavailable: 0
       steps:

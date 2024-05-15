@@ -1,11 +1,26 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: testapp
+  name: testapp-service-canary
 spec:
-  type: LoadBalancer
   ports:
   - port: 80
-    targetPort: 80
+    targetPort: http
+    protocol: TCP
+    name: http
+  selector:
+    app: testapp
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: testapp-service-stable
+spec:
+  ports:
+  - port: 80
+    targetPort: http
+    protocol: TCP
+    name: http
   selector:
     app: testapp

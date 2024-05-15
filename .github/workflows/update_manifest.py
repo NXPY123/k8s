@@ -1,32 +1,22 @@
 
 import os
-import datetime
+import yaml
 
-# Pathway to folder I want to look through.
+def update_image_version(yaml_file, new_version):
+    # Load YAML file
+    with open(yaml_file, 'r') as file:
+        yaml_data = yaml.safe_load(file)
 
-rootdir = os.getcwd()
+    # Update image version
+    for container in yaml_data['spec']['template']['spec']['containers']:
+        if 'image' in container:
+            container['image'] = container['image'].split(':')[0] + ':' + new_version
 
+    # Write updated YAML back to file
+    with open(yaml_file, 'w') as file:
+        yaml.dump(yaml_data, file, default_flow_style=False)
 
-manifest_file_location = rootdir + "/yaml/testapp-rollout.yaml"
-
-
-
-manifest_file = open(manifest_file_location, 'w')
-
-# find the "image: nxpy/k8s-flask-app:[VERSION]" line in the yaml file and replace it with the sha256 of the latest git commit
-# this will trigger a rollout in the k8s cluster
-
-# get the latest git commit from ${{ github.sha }}
-
-sha = os.getenv('GITHUB_SHA')
-
-
-# find the line in the yaml file that contains "image: nxpy/k8s-flask-app:[VERSION]"
-# replace [VERSION] with the sha256 of the latest git commit
-
-for line in manifest_file:
-    if "image: nxpy/k8s-flask-app:" in line:
-        line = "image: nxpy/k8s-flask-app:" + sha
-    manifest_file.write(line)
-
-manifest_file.close()
+# Usage example
+yaml_file = "/yaml/testapp-rollout.yaml"
+new_version = os.getenv('GITHUB_SHA')
+update_image_version(yaml_file, new_version)

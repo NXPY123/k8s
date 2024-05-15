@@ -22,14 +22,13 @@ spec:
       - setCanaryScale:
           weight: 50
       - setWeight: 30
-      - pause: 
+      - pause:
           duration: 10s
       - setCanaryScale:
           weight: 75
       - setWeight: 60
       - pause:
           duration: 10s
-      # Rollout to 100% after 30s
       - setCanaryScale:
           weight: 100
       - setWeight: 100
@@ -42,7 +41,7 @@ spec:
         app: testapp
     spec:
       containers:
-      - image: nxpy/k8s-flask-app:42f5c008d15963015007678fa01954aef6ca1401
+      - image: nxpy/k8s-flask-app:81f5f73ccaeb90486105b7ae57784b316304a5c3
         name: testapp
         platform: linux/amd64
         ports:

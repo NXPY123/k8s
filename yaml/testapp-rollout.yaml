@@ -10,25 +10,25 @@ spec:
   strategy:
     canary:
       canaryService: testapp-service-canary
-      stableService: testapp-service-stable
-      trafficRouting:
-        nginx:
-          stableIngress: testapp-ingress
       maxSurge: 25%
       maxUnavailable: 0
+      stableService: testapp-service-stable
       steps:
       - setWeight: 10
       - pause:
           duration: 10s
       - setWeight: 20
       - pause: {}
+      trafficRouting:
+        nginx:
+          stableIngress: testapp-ingress
   template:
     metadata:
       labels:
         app: testapp
     spec:
       containers:
-      - image: nxpy/k8s-flask-app:d2e600a6d0809547d4fab8b091effb4bda351ceb
+      - image: nxpy/k8s-flask-app:4d05782900ca7291f6cfed4bf6ea98849829af5e
         name: testapp
         platform: linux/amd64
         ports:

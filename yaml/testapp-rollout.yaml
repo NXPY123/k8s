@@ -42,7 +42,7 @@ spec:
         app: testapp
     spec:
       containers:
-      - image: nxpy/k8s-flask-app:c1cdca18c0569949dac9e03218ebf1f6c3bd30ac
+      - image: nxpy/k8s-flask-app:42f5c008d15963015007678fa01954aef6ca1401
         name: testapp
         platform: linux/amd64
         ports:

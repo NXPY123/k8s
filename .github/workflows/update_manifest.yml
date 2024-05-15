@@ -21,6 +21,9 @@ jobs:
 
       # Other steps that change files in the repository
       - name: Update mainfest
+        run: python ./.github/workflows/update_manifest.py
+        env:
+          GITHUB_SHA: ${{ github.sha }}
       
       # Commit all changed files back to the repository
       - uses: stefanzweifel/git-auto-commit-action@v5

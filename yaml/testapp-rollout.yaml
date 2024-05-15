@@ -12,18 +12,18 @@ spec:
       maxSurge: 25%
       maxUnavailable: 0
       steps:
-        - setWeight: 10
-        - pause:
-            duration: 10s
-        - setWeight: 20
-        - pause: {}
+      - setWeight: 10
+      - pause:
+          duration: 10s
+      - setWeight: 20
+      - pause: {}
   template:
     metadata:
       labels:
         app: testapp
     spec:
       containers:
-        - image: nxpy/k8s-flask-app:d5e2ac5ab0073ea3eb958ddb667fe7e2d9215b7b
-          name: testapp
-          ports:
-            - containerPort: 80
+      - image: nxpy/k8s-flask-app:998e93ac84e049a759a58327e8f444552e354131
+        name: testapp
+        ports:
+        - containerPort: 80
